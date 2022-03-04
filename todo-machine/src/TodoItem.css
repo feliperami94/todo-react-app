@@ -16,9 +16,8 @@
     position: absolute;
     right: -10px;
     top: -10px;
-    font-size: 0.8rem;
-    background-color: var(--cancel-red);
-    color: #F2D0DF;
+    font-size: 1rem;
+    font-weight: bold;
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -26,6 +25,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.Icon-delete:hover {
+    background-color: var(--cancel-red);
+    color: #F2D0DF;
 }
 
 .IconCheck {
@@ -47,5 +51,12 @@
     font-size: 1.2rem;
 }
 
+.Icon-check--active {
+    background-color: var(--lime-green);
+    color: #5A6B39;
+}
 
+.TodoItem-p--complete {
+    text-decoration: line-through;
+}
 

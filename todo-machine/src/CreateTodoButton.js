@@ -3,8 +3,12 @@ import "./CreateTodoButton.css"
 
 
 function CreateTodoButton(props) {
+    const onClickButton = () => alert('Agregaste un ToDo nuevo')
     return (
-        <button className="CreateTodoButton">+</button>  
+        <button 
+        className="CreateTodoButton"
+        onClick={onClickButton}
+        >+</button>  
     )
 }
 
