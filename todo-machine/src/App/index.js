@@ -1,18 +1,18 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-// import './App.css';
-const defaultTodos = [
-  {text:'Cortar Cebolla', completed: false},
-  {text:'Tomar curso de Intro a React', completed: false},
-  {text:'Llorar con la llorona', completed: false},
-  {text:'Aprender y terminar intro de React', completed: false}
-]
+import { AppUI } from './AppUI';
+
+
+// const defaultTodos = [
+//   {text:'Cortar Cebolla', completed: false},
+//   {text:'Tomar curso de Intro a React', completed: false},
+//   {text:'Llorar con la llorona', completed: false},
+//   {text:'Aprender y terminar intro de React', completed: false}
+// ]
 
 function App() {
+
+
+  
   const [todos, setTodos] = React.useState(defaultTodos);
   const [searchInputState, setSearchInputState] = React.useState("");
 
@@ -35,7 +35,6 @@ function App() {
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodoList = [...todos];
-    // console.log(todoIndex);
     newTodoList[todoIndex].completed = true;
     setTodos(newTodoList);
   };
@@ -47,32 +46,17 @@ function App() {
     setTodos(newTodoList);
   };
 
-  
-  // console.log(displayTodos);
-  return (
-    <React.Fragment>
-      <TodoCounter 
-        completed={completedTodos}
-        total={totalTodos}/>
-      <TodoSearch 
-        searchInputState={searchInputState}
-        setSearchInputState={setSearchInputState}
-        />
-      <TodoList>
-      {displayTodos.map(todo => 
-        (<TodoItem 
-        key={todo.text} 
-        text={todo.text}
-        completed={todo.completed}
-        onCompleteButton={() => completeTodo(todo.text)}
-        onDeleteButton={() => deleteTodo(todo.text)}/>))}
-        
-      </TodoList>
-      <CreateTodoButton />
-          
-    </React.Fragment>
 
+  return (
+    <AppUI 
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchInputState={searchInputState}
+      setSearchInputState={setSearchInputState}
+      displayTodos={displayTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
   );
 }
-
-export default App;
+export { App };
