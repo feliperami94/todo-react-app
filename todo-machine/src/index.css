@@ -1,10 +1,20 @@
+:root {
+--dark-blue: #00376B;
+--vibrant-orange: #ED9A15;
+--light-blue: #76B2E3;
+--lime-green: #AEEB36;
+--aquamarine-green: #00BDB6;
+--cancel-red: #BA2A11;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'PT Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  background-color: var(--light-blue);
 }
 
 code {

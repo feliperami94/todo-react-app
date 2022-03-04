@@ -1,0 +1,51 @@
+.TodoItemLi {
+    background-color: var(--vibrant-orange);
+    margin: 15px 0;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 1px 3px 5px 1px var(--dark-blue);
+    display: flex;
+    width: 600px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.Icon-delete{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 0.8rem;
+    background-color: var(--cancel-red);
+    color: #F2D0DF;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.IconCheck {
+    background-color: #5A6B39;
+    color: var(--lime-green);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 30px;
+}
+
+.Todo-Item-p {
+    font-size: 1.2rem;
+}
+
+
+
