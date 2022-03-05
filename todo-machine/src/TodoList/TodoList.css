@@ -1,7 +1,11 @@
 .TodoListSection {
     display: flex;
     justify-content: center;
-    
+
+}
+
+.TodoListSection p {
+    font-size: 2rem;
 }
 
 .TodoListUl {

@@ -9,11 +9,59 @@ import { AppUI } from './AppUI';
 //   {text:'Aprender y terminar intro de React', completed: false}
 // ]
 
-function App() {
+function useLocalStorage (itemName, initialValue) {
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [item, setItem] = React.useState(initialValue);
 
-
+  React.useEffect(() => {
+    setTimeout(() => {
+      try {
+      const localStorageItem = localStorage.getItem(itemName);
+      let parsedItem;
   
-  const [todos, setTodos] = React.useState(defaultTodos);
+      if (!localStorageItem) {
+        parsedItem = initialValue;
+        localStorage.setItem(itemName, JSON.stringify(parsedItem));
+      } else {
+        parsedItem = JSON.parse(localStorageItem);
+      }
+      setItem(parsedItem);
+      setLoading(false);
+    } catch(error) {
+      setError(error);
+    }
+    }, 1500)
+  });
+
+    const saveItem = (newTodoList) => {
+      try {
+        setItem(newTodoList);
+        const stringifiedNewItem = JSON.stringify(newTodoList);
+        localStorage.setItem(itemName, stringifiedNewItem);
+      } catch(error){
+        setError(error)
+      }
+
+      
+    }
+
+    return {
+      item,
+      saveItem,
+      loading,
+      error,
+    }
+}
+
+function App() {
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error
+  } = useLocalStorage('TODOS-V1', []);
+  
   const [searchInputState, setSearchInputState] = React.useState("");
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -36,19 +84,24 @@ function App() {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodoList = [...todos];
     newTodoList[todoIndex].completed = true;
-    setTodos(newTodoList);
+    saveTodos(newTodoList);
   };
 
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodoList = [...todos];
     newTodoList.splice(todoIndex, 1);
-    setTodos(newTodoList);
+    saveTodos(newTodoList);
   };
 
+  // React.useEffect(() => {
+  //   console.log('use effect')
+  // }, [totalTodos]);
 
   return (
     <AppUI 
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchInputState={searchInputState}
